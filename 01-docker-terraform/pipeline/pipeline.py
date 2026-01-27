@@ -6,5 +6,6 @@ print("arguments:", sys.argv)
 month = int(sys.argv[1])
 df = pd.DataFrame({"A": [1, 2, 3], "B": [4, 5, 6]})
 print(df.head())
+df.to_parquet(f'output_{month}.parquet')
 
 print(f"Hello from pipeline, month={month}")
