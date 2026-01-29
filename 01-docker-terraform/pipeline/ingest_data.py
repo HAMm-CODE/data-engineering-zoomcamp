@@ -37,16 +37,8 @@ parse_dates = [
 @click.option('--pg-host', default='localhost', help='PostgreSQL host')
 @click.option('--pg-port', default=5432, type=int, help='PostgreSQL port')
 @click.option('--pg-db', default='ny_taxi', help='PostgreSQL database name')
-@click.option('--target-table', default='yellow_taxi_data', help='Target table name')
+@click.option('--target-table', default='yellow_taxi_trips', help='Target table name')
 def run(pg_user, pg_pass, pg_host, pg_port, pg_db, target_table):
-
-    year = 2021
-    month = 1
-
-    target_table = "yellow_taxi_data"
-
-    chunksize = 100000
-
     prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/'
     engine = create_engine(f'postgresql://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db}')
 
