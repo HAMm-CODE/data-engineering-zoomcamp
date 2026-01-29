@@ -48,18 +48,10 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, target_table):
     chunksize = 100000
 
     prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/'
-    df = pd.read_csv(prefix + f'yellow_tripdata_{year}-{month:02d}.csv.gz', nrows=100)
     engine = create_engine(f'postgresql://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db}')
 
-    df = pd.read_csv(
-    prefix + f'yellow_tripdata_{year}-{month:02d}.csv.gz',
-    nrows=100,
-    dtype=dtype,
-    parse_dates=parse_dates
-)
-
     df_iter = pd.read_csv(
-    prefix + 'yellow_tripdata_2021-01.csv.gz',
+    prefix + f'yellow_tripdata_{year}-{month:02d}.csv.gz',
     dtype=dtype,
     parse_dates=parse_dates,
     iterator=True,
